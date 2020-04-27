@@ -8,7 +8,13 @@ def lyrics(song_name: str):
 
     req = urllib.request.Request(url="https://api.canarado.xyz/lyrics/" + urllib.parse.quote(song_name), headers=headers)
 
-    with urllib.request.urlopen(req) as res:
+    try:
+        res = urllib.request.urlopen(req)
+    except urllib.error.HTTPError as e:
+        return e
+    except urllib.error.URLError as e:
+        return e
+    else:
         return json.loads(res.read())
 
 print(lyrics("lil darkie black sheep"))
