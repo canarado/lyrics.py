@@ -16,5 +16,3 @@ def lyrics(song_name: str):
         return e
     else:
         return json.loads(res.read())
-
-print(lyrics("lil darkie black sheep"))
